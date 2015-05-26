@@ -1,0 +1,23 @@
+# Description: OpenConnect SSL VPN Client
+# URL: http://www.infradead.org/openconnect/index.html
+# Packager: Random J Developer, random at developer dot example dot org
+# Maintainer: Random J Developer, random at developer dot example dot org
+# Depends on: openssl
+
+name=openconnect
+version=4.08
+release=1
+source=(ftp://ftp.infradead.org/pub/openconnect/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr \
+			--libexecdir=/lib \
+			--mandir=/usr/man \
+			--without-gnutls \
+			--with-vpnc-script=/etc/vpnc/vpnc-script
+
+	make
+	make DESTDIR=$PKG install
+}
