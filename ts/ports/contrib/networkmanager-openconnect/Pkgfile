@@ -1,0 +1,22 @@
+# Description: Network Manager plugin for OpenConnect SSL VPN Client
+# URL: http://ftp.gnome.org/pub/GNOME/sources/NetworkManager-openconnect
+# Packager: Random J Developer, random at developer dot example dotorg
+# Maintainer: Random J Developer, random at developer dot exampledot org
+# Depends on: networkmanager openconnect
+
+name=networkmanager-openconnect
+version=0.9.6.2
+release=1
+source=(http://ftp.gnome.org/pub/GNOME/sources/NetworkManager-openconnect/0.9/NetworkManager-openconnect-0.9.6.2.tar.xz)
+
+build() {
+	cd NetworkManager-openconnect-0.9.6.2
+
+	./configure --prefix=/usr \
+		--libexecdir=/lib \
+		--mandir=/usr/man \
+		--disable-more-warnings
+
+	make
+	make DESTDIR=$PKG install
+}
